@@ -10,15 +10,15 @@ public class Empresa extends EntidadeBase{
 
 	private String nome;
 	
-	private String descricao;
+	private String ramoDeNegocio;
 
-	public Empresa() {
+	private Empresa() {
 	}
 	
-	public Empresa(String nome, String descricao) throws ExcecaoDeCampoObrigatorio {
-		validarCamposObrigatorios(nome, descricao);
+	public Empresa(String nome, String ramoDeNegocio) throws ExcecaoDeCampoObrigatorio {
+		validarCamposObrigatorios(nome, ramoDeNegocio);
 		this.nome = nome;
-		this.descricao = descricao;
+		this.ramoDeNegocio = ramoDeNegocio;
 	}
 
 	private void validarCamposObrigatorios(String nome, String descricao) throws ExcecaoDeCampoObrigatorio {
@@ -32,7 +32,7 @@ public class Empresa extends EntidadeBase{
 		return nome;
 	}
 	
-	public String getDescricao() {
-		return descricao;
+	public String getRamoDeNegocio() {
+		return ramoDeNegocio;
 	}
 }

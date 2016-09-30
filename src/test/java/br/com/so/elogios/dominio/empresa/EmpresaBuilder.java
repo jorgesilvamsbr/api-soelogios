@@ -5,11 +5,11 @@ import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
 public class EmpresaBuilder {
 
 	private String nome;
-	private String descricao;
+	private String ramo;
 
 	public EmpresaBuilder() {
 		this.nome = "SoElogios";
-		this.descricao = "Empresa fornecedora de informacoes";
+		this.ramo = "Empresa fornecedora de informacoes";
 	}
 	
 	public static EmpresaBuilder novo() {
@@ -21,12 +21,12 @@ public class EmpresaBuilder {
 		return this;
 	}
 
-	public EmpresaBuilder comDescricao(String descricao) {
-		this.descricao = descricao;
+	public EmpresaBuilder comRamoDeNeogocio(String ramo) {
+		this.ramo = ramo;
 		return this;
 	}
 
 	public Empresa criar() throws ExcecaoDeCampoObrigatorio {
-		return new Empresa(nome, descricao);
+		return new Empresa(nome, ramo);
 	}
 }

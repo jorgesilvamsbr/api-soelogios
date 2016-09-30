@@ -25,16 +25,16 @@ public class EmpresaTest {
 	}
 	
 	@Test
-	public void uma_empresa_deve_conter_uma_descricao() throws Exception {
-		String descricaoEsperada = "Empresa de hamburgueria em Campo Grande/MS, tem ótimos hamburguers gourmet";
+	public void uma_empresa_deve_conter_um_ramo_de_negocio() throws Exception {
+		String ramoEsperada = "Restaurante";
 		
-		Empresa empresa = EmpresaBuilder.novo().comDescricao(descricaoEsperada).criar();
+		Empresa empresa = EmpresaBuilder.novo().comRamoDeNeogocio(ramoEsperada).criar();
 		
-		assertEquals(descricaoEsperada, empresa.getDescricao());
+		assertEquals(ramoEsperada, empresa.getRamoDeNegocio());
 	}
 	
 	@Test(expected = ExcecaoDeCampoObrigatorio.class)
-	public void a_descricao_da_empresa_nao_pode_ser_vazio() throws Exception {
+	public void o_ramo_de_negocio_da_empresa_nao_pode_ser_vazio() throws Exception {
 		EmpresaBuilder.novo().comNome(VAZIO).criar();
 	}
 	
