@@ -1,11 +1,19 @@
 package br.com.so.elogios.dominio.endereco;
 
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
 
+@Embeddable
 public class Endereco {
 
 	private String enderecoCompleto;
 	private String cep;
+	
+	@JoinColumn
+	@OneToOne
 	private Municipio municipio;
 
 	public Endereco(String enderecoCompleto, String cep, Municipio municipio) throws ExcecaoDeCampoObrigatorio {

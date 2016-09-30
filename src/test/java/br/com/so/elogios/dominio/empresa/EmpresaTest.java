@@ -5,10 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import br.com.so.elogios.dominio.empresa.Empresa;
+import br.com.so.elogios.dominio.endereco.Endereco;
+import br.com.so.elogios.dominio.endereco.EnderecoBuilder;
 import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
 
 public class EmpresaTest {
 	private static final String VAZIO = "";
+	private static final Endereco NULO = null;
 
 	@Test
 	public void uma_empresa_deve_conter_um_nome() throws Exception {
@@ -38,4 +41,17 @@ public class EmpresaTest {
 		EmpresaBuilder.novo().comNome(VAZIO).criar();
 	}
 	
+	@Test
+	public void uma_empresa_deve_conter_seu_endereco() throws Exception {
+		Endereco endereco = EnderecoBuilder.novo().criar();
+		
+		Empresa empresa = EmpresaBuilder.novo().comEndereco(endereco).criar();
+		
+		assertEquals(endereco.getEnderecoCompleto(), empresa.getEndereco().getEnderecoCompleto());
+	}
+	
+	@Test(expected = ExcecaoDeCampoObrigatorio.class)
+	public void o_endereco_da_empresa_nao_pode_ser_nulo() throws Exception {
+		EmpresaBuilder.novo().comEndereco(NULO).criar();
+	}
 }
