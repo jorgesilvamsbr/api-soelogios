@@ -23,9 +23,7 @@ public class Empresa extends EntidadeBase{
 
 	private void validarCamposObrigatorios(String nome, String descricao) throws ExcecaoDeCampoObrigatorio {
 		new ExcecaoDeCampoObrigatorio()
-		.quandoNulo(nome, "O nome da empresa não informado")
 		.quandoVazio(nome, "O nome da empresa não pode ser vazio")
-		.quandoNulo(descricao, "Descrição da empresa não informado")
 		.quandoVazio(descricao, "Descrição da empresa não pode ser vazio!")
 		.entaoDispara();
 	}

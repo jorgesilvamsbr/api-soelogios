@@ -9,7 +9,6 @@ import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
 
 public class EmpresaTest {
 	private static final String VAZIO = "";
-	private static final String NULO = null;
 
 	@Test
 	public void uma_empresa_deve_conter_um_nome() throws Exception {
@@ -25,11 +24,6 @@ public class EmpresaTest {
 		EmpresaBuilder.novo().comNome(VAZIO).criar();
 	}
 	
-	@Test(expected = ExcecaoDeCampoObrigatorio.class)
-	public void o_nome_da_empresa_nao_pode_ser_nulo() throws Exception {
-		EmpresaBuilder.novo().comNome(NULO).criar();
-	}
-	
 	@Test
 	public void uma_empresa_deve_conter_uma_descricao() throws Exception {
 		String descricaoEsperada = "Empresa de hamburgueria em Campo Grande/MS, tem ótimos hamburguers gourmet";
@@ -42,11 +36,6 @@ public class EmpresaTest {
 	@Test(expected = ExcecaoDeCampoObrigatorio.class)
 	public void a_descricao_da_empresa_nao_pode_ser_vazio() throws Exception {
 		EmpresaBuilder.novo().comNome(VAZIO).criar();
-	}
-	
-	@Test(expected = ExcecaoDeCampoObrigatorio.class)
-	public void a_descricao_da_empresa_nao_pode_ser_nulo() throws Exception {
-		EmpresaBuilder.novo().comNome(NULO).criar();
 	}
 	
 }
