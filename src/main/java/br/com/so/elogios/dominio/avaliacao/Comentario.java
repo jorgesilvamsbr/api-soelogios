@@ -44,4 +44,15 @@ public class Comentario extends EntidadeBase {
 	public Usuario getUsuario() {
 		return usuario;
 	}
+
+	public void alterarDescricao(String descricaoNova) throws DescricaoInvalida {
+		validar(descricaoNova);
+		descricao = descricaoNova;
+	}
+
+	private void validar(String descricao) throws DescricaoInvalida {
+		if(descricao.isEmpty()){
+			throw new DescricaoInvalida();
+		}
+	}
 }

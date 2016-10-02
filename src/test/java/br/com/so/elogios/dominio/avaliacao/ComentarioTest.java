@@ -52,5 +52,24 @@ public class ComentarioTest {
 	@Test(expected = ExcecaoDeCampoObrigatorio.class)
 	public void nao_deve_permitir_um_comentario_nulo() throws Exception {
 		ComentarioBuilder.novo().comUsuario(null).criar();
-	}	
+	}
+	
+	@Test
+	public void deve_ser_possivel_alterar_a_descricao_do_comentario() throws Exception {
+		String descricaoAntiga = "Descricao Antiga";
+		String descricaoNova = "Descricao Nova";
+		Comentario comentario = ComentarioBuilder.novo().comDescricao(descricaoAntiga).criar();
+		
+		comentario.alterarDescricao(descricaoNova);
+		
+		assertEquals(descricaoNova, comentario.getDescricao());
+	}
+	
+	@Test(expected = DescricaoInvalida.class)
+	public void nao_deve_permitir_alterar_a_descricao_se_a_mesma_for_vazia() throws Exception {
+		String descricaoAntiga = "Descricao Antiga";
+		Comentario comentario = ComentarioBuilder.novo().comDescricao(descricaoAntiga).criar();
+		
+		comentario.alterarDescricao(VAZIO);
+	}
 }
