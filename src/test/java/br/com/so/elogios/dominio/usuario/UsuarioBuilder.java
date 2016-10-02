@@ -6,10 +6,12 @@ public class UsuarioBuilder {
 
 	private String nome;
 	private String email;
+	private String senha;
 	
 	public UsuarioBuilder() {
 		this.nome = "Natan Leite de Oliveira";
 		this.email = "natan@leafweb.com.br";
+		this.senha = "password";
 	}
 
 	public static UsuarioBuilder novo() {
@@ -27,6 +29,12 @@ public class UsuarioBuilder {
 	}
 	
 	public Usuario criar() throws ExcecaoDeCampoObrigatorio, EmailInvalido {
-		return new Usuario(nome, email);
+		return new Usuario(nome, email, senha);
+	}
+
+	public UsuarioBuilder comSenha(String senha) {
+		this.senha = senha;
+		return this;
+		
 	}
 }

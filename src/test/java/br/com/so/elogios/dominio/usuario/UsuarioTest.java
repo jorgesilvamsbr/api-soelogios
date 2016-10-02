@@ -38,4 +38,19 @@ public class UsuarioTest {
 		String email = "qualquer_email.com.br";
 		UsuarioBuilder.novo().comEmail(email).criar();
 	}
+	
+	@Test
+	public void deve_conter_uma_senha() throws Exception {
+		
+		String senhaEsperada = "password";
+	
+		Usuario usuario = UsuarioBuilder.novo().comSenha(senhaEsperada).criar();
+		
+		assertEquals(senhaEsperada, usuario.getSenha());
+	}
+	
+	@Test(expected = ExcecaoDeCampoObrigatorio.class)
+	public void nao_deve_permitir_cadastrar_senha_vazia() throws Exception {
+		UsuarioBuilder.novo().comSenha(VAZIO).criar();
+	}
 }
