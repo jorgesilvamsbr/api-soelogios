@@ -7,6 +7,8 @@ import org.junit.Test;
 import br.com.so.elogios.dominio.empresa.Empresa;
 import br.com.so.elogios.dominio.empresa.EmpresaBuilder;
 import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
+import br.com.so.elogios.dominio.usuario.Usuario;
+import br.com.so.elogios.dominio.usuario.UsuarioBuilder;
 
 public class AvaliacaoTest {
 	
@@ -66,5 +68,14 @@ public class AvaliacaoTest {
 		avaliacao.curtir();
 		
 		assertEquals(qtdDecurtidasEsperadas, avaliacao.obterCurtidas());
+	}
+	
+	@Test
+	public void uma_avaliacao_deve_conter_um_usuario() throws Exception {
+		Usuario usuarioEsperado = UsuarioBuilder.novo().criar();
+		
+//		Avaliacao avaliacao = AvaliacaoBuilder.novo().comUsuario(usuarioEsperado).criar();
+		
+//		assertEquals(usuarioEsperado, avaliacao.getUsuario().getNome());
 	}
 }
