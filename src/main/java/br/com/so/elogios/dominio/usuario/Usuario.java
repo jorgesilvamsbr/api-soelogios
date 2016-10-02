@@ -1,8 +1,13 @@
 package br.com.so.elogios.dominio.usuario;
 
+import javax.persistence.Entity;
+
+import br.com.so.elogios.dominio.Entidade.EntidadeBase;
 import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
 
-public class Usuario {
+@Entity
+public class Usuario extends EntidadeBase {
+	
 	private String nome;
 	private String email;
 	private String senha;

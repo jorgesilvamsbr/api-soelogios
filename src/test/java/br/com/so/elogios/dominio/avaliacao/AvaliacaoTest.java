@@ -72,10 +72,11 @@ public class AvaliacaoTest {
 	
 	@Test
 	public void uma_avaliacao_deve_conter_um_usuario() throws Exception {
-		Usuario usuarioEsperado = UsuarioBuilder.novo().criar();
+		String nome = "Patricia da Silva";
+		Usuario usuarioEsperado = UsuarioBuilder.novo().comNome(nome ).criar();
 		
-//		Avaliacao avaliacao = AvaliacaoBuilder.novo().comUsuario(usuarioEsperado).criar();
+		Avaliacao avaliacao = AvaliacaoBuilder.novo().comUsuario(usuarioEsperado).criar();
 		
-//		assertEquals(usuarioEsperado, avaliacao.getUsuario().getNome());
+		assertEquals(usuarioEsperado.getNome(), avaliacao.getUsuario().getNome());
 	}
 }

@@ -41,7 +41,6 @@ public class UsuarioTest {
 	
 	@Test
 	public void deve_conter_uma_senha() throws Exception {
-		
 		String senhaEsperada = "password";
 	
 		Usuario usuario = UsuarioBuilder.novo().comSenha(senhaEsperada).criar();
