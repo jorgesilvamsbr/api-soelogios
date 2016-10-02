@@ -26,7 +26,7 @@ public class UsuarioBuilder {
 		return this;
 	}
 	
-	public Usuario criar() throws ExcecaoDeCampoObrigatorio {
+	public Usuario criar() throws ExcecaoDeCampoObrigatorio, EmailInvalido {
 		return new Usuario(nome, email);
 	}
 }

@@ -32,4 +32,10 @@ public class UsuarioTest {
 		
 		assertEquals(emailEsperado, usuario.getEmail());
 	}
+	
+	@Test(expected = EmailInvalido.class)
+	public void nao_deve_permitir_cadastrar_um_email_invalido() throws Exception {
+		String email = "qualquer_email.com.br";
+		UsuarioBuilder.novo().comEmail(email).criar();
+	}
 }
