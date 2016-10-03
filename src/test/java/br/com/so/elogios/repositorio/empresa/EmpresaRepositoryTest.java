@@ -1,6 +1,7 @@
 package br.com.so.elogios.repositorio.empresa;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.so.elogios.dominio.empresa.Empresa;
 import br.com.so.elogios.dominio.empresa.EmpresaBuilder;
+import br.com.so.elogios.dominio.empresa.EmpresaRepository;
+import br.com.so.elogios.dominio.endereco.Endereco;
+import br.com.so.elogios.dominio.endereco.EnderecoBuilder;
+import br.com.so.elogios.dominio.endereco.Municipio;
+import br.com.so.elogios.dominio.endereco.MunicipioRepository;
+import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -20,6 +27,9 @@ public class EmpresaRepositoryTest {
 
 	@Autowired
 	private EmpresaRepository empresaRepository;
+	
+	@Autowired
+	private MunicipioRepository municipioRepository;
 
 	@Test
 	public void deve_salvar_uma_empresa() throws Exception {
@@ -29,15 +39,27 @@ public class EmpresaRepositoryTest {
 
 		assertNotNull(empresa.getId());
 	}
-
+	
 	@Test
-	public void deve_ser_possivel_excluir_uma_empresa() throws Exception {
-		Empresa empresa = EmpresaBuilder.novo().criar();
-		empresaRepository.save(empresa);
-		Integer id = empresa.getId();
+	public void deve_buscar_todas_as_empresas_cadastradas() throws Exception {
+		int quantidadeEsperada = 1;
+		empresaCriar(quantidadeEsperada);
 
-		empresaRepository.deleteAll();
-		
-		assertNull(empresaRepository.findOne(id.longValue()));
+		assertEquals(quantidadeEsperada, empresaRepository.count());
+	}
+
+	private void empresaCriar(int qtd) throws ExcecaoDeCampoObrigatorio {
+		for(int i=0; i< qtd; i++){
+			criarEmpresa();
+		}
+	}
+	
+	public Empresa criarEmpresa() throws ExcecaoDeCampoObrigatorio{
+		Municipio municipio = new Municipio("Campo Grande");
+		municipioRepository.save(municipio);
+		Endereco endereco = EnderecoBuilder.novo().comMunicipio(municipio).criar();
+		Empresa empresa = EmpresaBuilder.novo().comEndereco(endereco).criar();
+		empresaRepository.save(empresa);
+		return empresa;
 	}
 }
