@@ -15,18 +15,29 @@ import br.com.so.elogios.dominio.empresa.EmpresaBuilder;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@AutoConfigureTestDatabase(replace=Replace.NONE)
+@AutoConfigureTestDatabase(replace = Replace.NONE)
 public class EmpresaRepositoryTest {
 
 	@Autowired
 	private EmpresaRepository empresaRepository;
-	
+
 	@Test
 	public void deve_salvar_uma_empresa() throws Exception {
 		Empresa empresa = EmpresaBuilder.novo().criar();
-		
+
 		empresaRepository.save(empresa);
-		
+
 		assertNotNull(empresa.getId());
+	}
+
+	@Test
+	public void deve_ser_possivel_excluir_uma_empresa() throws Exception {
+		Empresa empresa = EmpresaBuilder.novo().criar();
+		empresaRepository.save(empresa);
+		Integer id = empresa.getId();
+
+		empresaRepository.deleteAll();
+		
+		assertNull(empresaRepository.findOne(id.longValue()));
 	}
 }
