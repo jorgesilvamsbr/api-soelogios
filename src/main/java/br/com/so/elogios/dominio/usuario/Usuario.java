@@ -12,6 +12,9 @@ public class Usuario extends EntidadeBase {
 	private String email;
 	private String senha;
 	
+	public Usuario() {
+	}
+
 	public Usuario(String nome, String email, String senha) throws ExcecaoDeCampoObrigatorio, EmailInvalido {
 		validarCamposObrigatorios(nome, email, senha);
 		validarEmail(email);		

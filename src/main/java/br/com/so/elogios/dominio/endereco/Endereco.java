@@ -16,6 +16,9 @@ public class Endereco {
 	@OneToOne
 	private Municipio municipio;
 
+	public Endereco() {
+	}
+	
 	public Endereco(String enderecoCompleto, String cep, Municipio municipio) throws ExcecaoDeCampoObrigatorio {
 		validaCamposObrigatorios(enderecoCompleto, municipio);
 		this.enderecoCompleto = enderecoCompleto;

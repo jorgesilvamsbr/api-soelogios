@@ -17,7 +17,7 @@ public class Empresa extends EntidadeBase{
 	@Embedded
 	private Endereco endereco;
 
-	private Empresa() {
+	public Empresa() {
 	}
 	
 	public Empresa(String nome, String ramoDeNegocio, Endereco endereco) throws ExcecaoDeCampoObrigatorio {

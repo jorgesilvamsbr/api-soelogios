@@ -11,13 +11,19 @@ import br.com.so.elogios.dominio.usuario.Usuario;
 @Entity
 public class Avaliacao extends EntidadeBase {
 
-	private String descricao;
-	private TipoDeAvaliacao tipo;
 	@OneToOne
-	private Empresa empresa;
-	private int curtida;
 	private Usuario usuario;
 
+	@OneToOne
+	private Empresa empresa;
+	
+	private String descricao;
+	private TipoDeAvaliacao tipo;
+	private int curtida;
+
+	public Avaliacao() {
+	}
+	
 	public Avaliacao(String descricao, TipoDeAvaliacao tipo, Empresa empresa, Usuario usuario) throws ExcecaoDeCampoObrigatorio {
 		validarCamposObrigatorios(descricao, empresa, usuario);
 		this.usuario = usuario;
