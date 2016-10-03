@@ -1,5 +1,6 @@
 package br.com.so.elogios.dominio.empresa;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
 import br.com.so.elogios.dominio.Entidade.EntidadeBase;
@@ -13,6 +14,7 @@ public class Empresa extends EntidadeBase{
 	
 	private String ramoDeNegocio;
 
+	@Embedded
 	private Endereco endereco;
 
 	private Empresa() {
