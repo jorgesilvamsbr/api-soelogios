@@ -13,12 +13,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.so.elogios.dominio.empresa.Empresa;
 import br.com.so.elogios.dominio.empresa.EmpresaBuilder;
-import br.com.so.elogios.dominio.empresa.EmpresaRepository;
 import br.com.so.elogios.dominio.endereco.Endereco;
 import br.com.so.elogios.dominio.endereco.EnderecoBuilder;
 import br.com.so.elogios.dominio.endereco.Municipio;
-import br.com.so.elogios.dominio.endereco.MunicipioRepository;
 import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
+import br.com.so.elogios.repositorio.empresa.EmpresaRepository;
+import br.com.so.elogios.repositorio.municipio.MunicipioRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -42,7 +42,7 @@ public class EmpresaRepositoryTest {
 	
 	@Test
 	public void deve_buscar_todas_as_empresas_cadastradas() throws Exception {
-		int quantidadeEsperada = 1;
+		int quantidadeEsperada = 3;
 		empresaCriar(quantidadeEsperada);
 
 		assertEquals(quantidadeEsperada, empresaRepository.count());
@@ -61,5 +61,5 @@ public class EmpresaRepositoryTest {
 		Empresa empresa = EmpresaBuilder.novo().comEndereco(endereco).criar();
 		empresaRepository.save(empresa);
 		return empresa;
-	}
+	}	
 }
