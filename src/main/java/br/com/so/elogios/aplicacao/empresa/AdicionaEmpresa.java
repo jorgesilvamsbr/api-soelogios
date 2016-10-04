@@ -4,7 +4,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.ApplicationScope;
 
 import br.com.so.elogios.dominio.empresa.Empresa;
 import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
@@ -12,7 +11,6 @@ import br.com.so.elogios.repositorio.empresa.EmpresaRepository;
 import br.com.so.elogios.repositorio.municipio.MunicipioRepository;
 
 @Service
-@ApplicationScope
 public class AdicionaEmpresa {
 
 	private final EmpresaRepository empresaRepository;

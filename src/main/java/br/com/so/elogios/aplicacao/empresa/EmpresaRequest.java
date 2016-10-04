@@ -7,7 +7,13 @@ public class EmpresaRequest {
 	private String nome;
 	private String ramo;
 	private EnderecoDTO enderecoDTO;
-	private Integer id;
+	private Long id;
+
+	public EmpresaRequest(String nome, String ramo, EnderecoDTO enderecoDTO) {
+		this.nome = nome;
+		this.ramo = ramo;
+		this.enderecoDTO = enderecoDTO;
+	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -29,11 +35,11 @@ public class EmpresaRequest {
 		this.enderecoDTO = enderecoDTO;
 	}
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

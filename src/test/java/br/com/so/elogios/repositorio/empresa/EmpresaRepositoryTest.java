@@ -17,12 +17,11 @@ import br.com.so.elogios.dominio.endereco.Endereco;
 import br.com.so.elogios.dominio.endereco.EnderecoBuilder;
 import br.com.so.elogios.dominio.endereco.Municipio;
 import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
-import br.com.so.elogios.repositorio.empresa.EmpresaRepository;
 import br.com.so.elogios.repositorio.municipio.MunicipioRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = Replace.NONE)
+@AutoConfigureTestDatabase(replace=Replace.NONE)
 public class EmpresaRepositoryTest {
 
 	@Autowired
