@@ -6,17 +6,15 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.so.elogios.dominio.empresa.Empresa;
 import br.com.so.elogios.dominio.endereco.Municipio;
 import br.com.so.elogios.repositorio.empresa.EmpresaRepository;
+import br.com.so.elogios.testebase.TesteBase;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class AdicionaEmpresaTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class AdicionaEmpresaTest extends TesteBase {
 	
 	@Autowired private AdicionaEmpresa adicionaEmpresa;
 	@Autowired private EmpresaRepository empresaRepository;

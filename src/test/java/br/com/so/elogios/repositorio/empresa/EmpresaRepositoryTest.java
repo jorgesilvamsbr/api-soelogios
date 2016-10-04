@@ -6,9 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.so.elogios.dominio.empresa.Empresa;
@@ -18,11 +15,10 @@ import br.com.so.elogios.dominio.endereco.EnderecoBuilder;
 import br.com.so.elogios.dominio.endereco.Municipio;
 import br.com.so.elogios.dominio.excecao.ExcecaoDeCampoObrigatorio;
 import br.com.so.elogios.repositorio.municipio.MunicipioRepository;
+import br.com.so.elogios.testebase.TesteBase;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace=Replace.NONE)
-public class EmpresaRepositoryTest {
+public class EmpresaRepositoryTest extends TesteBase{
 
 	@Autowired
 	private EmpresaRepository empresaRepository;
