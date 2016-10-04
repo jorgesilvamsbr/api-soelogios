@@ -10,4 +10,8 @@ public class MapearEmpresa {
 		Endereco endereco = new Endereco(empresaRequest.getEnderecoCompleto(), empresaRequest.getCep(), empresaRequest.getMunicipio());
 		return new Empresa(empresaRequest.getNome(), empresaRequest.getRamo(), endereco);
 	}
+	
+	public static EmpresaResponse mapear(Empresa empresa){
+		return new EmpresaResponse(empresa.getId(), empresa.getNome());
+	}
 }

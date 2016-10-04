@@ -31,9 +31,9 @@ public class ConsultaEmpresa {
 		Empresa empresa = empresaRepository.findOne(id);
 		return criarEmpresaResponse(empresa);
 	}
-	
+
 	private EmpresaResponse criarEmpresaResponse(Empresa empresa){
-		return new EmpresaResponse(empresa.getId(), empresa.getNome());
+		return MapearEmpresa.mapear(empresa);
 	}
 
 }
