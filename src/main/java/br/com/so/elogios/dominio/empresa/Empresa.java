@@ -46,4 +46,27 @@ public class Empresa extends EntidadeBase{
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
+	public void alterarNome(String novoNome) throws ExcecaoDeCampoObrigatorio {
+		validarSeOCampoEstaVazio(novoNome, "O nome da empresa esta vazio");
+		nome = novoNome;
+	}
+
+	public void alterarEndereco(Endereco novoEndereco) throws ExcecaoDeCampoObrigatorio {
+		validarSeOCampoEstaNulo(novoEndereco, "Endereço informado é inválido");
+		endereco = novoEndereco;
+	}
+
+	private void validarSeOCampoEstaNulo(Endereco campo, String mensagem) throws ExcecaoDeCampoObrigatorio {
+		new ExcecaoDeCampoObrigatorio().quandoNulo(campo, mensagem).entaoDispara();
+	}
+
+	public void alterarRamoDeNegocio(String ramo) throws ExcecaoDeCampoObrigatorio {
+		validarSeOCampoEstaVazio(ramo, "O ramo de negócio informado esta vazio");
+		ramoDeNegocio = ramo;
+	}
+
+	private void validarSeOCampoEstaVazio(String campo, String mensagem) throws ExcecaoDeCampoObrigatorio {
+		new ExcecaoDeCampoObrigatorio().quandoVazio(campo, mensagem).entaoDispara();
+	}
 }

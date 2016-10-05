@@ -33,7 +33,7 @@ public class ConsultaEmpresa {
 	}
 
 	private EmpresaResponse criarEmpresaResponse(Empresa empresa){
-		return MapearEmpresa.mapear(empresa);
+		return MapearEmpresa.mapearParaResponse(empresa);
 	}
 
 }

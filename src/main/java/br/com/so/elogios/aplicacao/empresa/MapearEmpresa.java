@@ -11,7 +11,15 @@ public class MapearEmpresa {
 		return new Empresa(empresaRequest.getNome(), empresaRequest.getRamo(), endereco);
 	}
 	
-	public static EmpresaResponse mapear(Empresa empresa){
+	public static EmpresaResponse mapearParaResponse(Empresa empresa){
 		return new EmpresaResponse(empresa.getId(), empresa.getNome());
+	}
+	
+	public static EmpresaRequest mapearParaRequest(Empresa empresa){
+		Endereco endereco = empresa.getEndereco();
+		EnderecoDTO enderecoDTO = new EnderecoDTO(endereco.getEnderecoCompleto(), endereco.getCep(), endereco.getMunicipio());
+		EmpresaRequest empresaRequest = new EmpresaRequest(empresa.getNome(), empresa.getRamoDeNegocio(), enderecoDTO );
+		empresaRequest.setId(empresa.getId());
+		return empresaRequest;
 	}
 }

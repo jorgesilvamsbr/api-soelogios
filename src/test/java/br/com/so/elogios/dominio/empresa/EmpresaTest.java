@@ -54,4 +54,55 @@ public class EmpresaTest {
 	public void o_endereco_da_empresa_nao_pode_ser_nulo() throws Exception {
 		EmpresaBuilder.novo().comEndereco(NULO).criar();
 	}
+	
+	@Test
+	public void deve_ser_possivel_alterar_o_nome_da_empresa() throws Exception {
+		Empresa empresa = EmpresaBuilder.novo().criar();
+		String novoNome = "Novo nome";
+		
+		empresa.alterarNome(novoNome);
+		
+		assertEquals(novoNome, empresa.getNome());
+	}
+	
+	@Test(expected = ExcecaoDeCampoObrigatorio.class)
+	public void nao_deve_ser_possivel_informar_um_nome_em_branco() throws Exception {
+		Empresa empresa = EmpresaBuilder.novo().criar();
+		
+		empresa.alterarNome(VAZIO);
+	}
+	
+	@Test
+	public void deve_ser_possivel_alterar_o_endereco_de_uma_empresa() throws Exception {
+		Empresa empresa = EmpresaBuilder.novo().criar();
+		Endereco novoEndereco = EnderecoBuilder.novo().comEnderecoCompleto("Rua da Divisão, 975").criar();
+		
+		empresa.alterarEndereco(novoEndereco);
+		
+		assertEquals(novoEndereco.getEnderecoCompleto(), empresa.getEndereco().getEnderecoCompleto());
+	}
+	
+	@Test(expected = ExcecaoDeCampoObrigatorio.class)
+	public void nao_deve_ser_possivel_informar_um_endereco_nulo() throws Exception {
+		Empresa empresa = EmpresaBuilder.novo().criar();
+		
+		empresa.alterarEndereco(null);
+	}
+	
+	@Test
+	public void deve_ser_possivel_alterar_o_ramo_da_empresa() throws Exception {
+		Empresa empresa = EmpresaBuilder.novo().criar();
+		String novoRamoDeNegocio = "Novo ramo de negocio";
+		
+		empresa.alterarRamoDeNegocio(novoRamoDeNegocio);
+		
+		assertEquals(novoRamoDeNegocio, empresa.getRamoDeNegocio());
+	}
+	
+	@Test(expected = ExcecaoDeCampoObrigatorio.class)
+	public void nao_deve_ser_possivel_informar_um_ramo_em_branco() throws Exception {
+		Empresa empresa = EmpresaBuilder.novo().criar();
+		
+		empresa.alterarRamoDeNegocio(VAZIO);
+	}
 }
