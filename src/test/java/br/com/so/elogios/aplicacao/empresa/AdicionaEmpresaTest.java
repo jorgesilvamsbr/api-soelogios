@@ -14,7 +14,7 @@ import br.com.so.elogios.repositorio.empresa.EmpresaRepository;
 import br.com.so.elogios.testebase.TesteBase;
 
 @RunWith(SpringRunner.class)
-public class AdicionaEmpresaTest extends TesteBase {
+public class AdicionaEmpresaTest extends TesteBase{
 	
 	@Autowired private AdicionaEmpresa adicionaEmpresa;
 	@Autowired private EmpresaRepository empresaRepository;
@@ -38,7 +38,7 @@ public class AdicionaEmpresaTest extends TesteBase {
 		assertEquals(empresaRequest.getNome(), empresa.getNome());
 		assertEquals(empresaRequest.getEnderecoCompleto(), empresa.getEndereco().getEnderecoCompleto());
 	}	
-
+	
 	private EmpresaRequest criarEmpresa() {
 		return new EmpresaRequest("Marisa Ltd.", "Roupas", criarEndereco());
 	}

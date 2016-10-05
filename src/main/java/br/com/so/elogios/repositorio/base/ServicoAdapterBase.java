@@ -6,6 +6,6 @@ public interface ServicoAdapterBase<T> {
 	public abstract void salvar(T obj);
 	public abstract int obterQuantidadeTotal();
 	public abstract void excluir(T obj);
-	public abstract T buscar(T obj);
+	public abstract T buscarPorId(Long id);
 	public abstract List<T> buscarTodas();
 }

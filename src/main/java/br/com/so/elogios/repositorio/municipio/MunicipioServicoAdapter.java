@@ -40,8 +40,8 @@ public class MunicipioServicoAdapter implements ServicoAdapterBase<Municipio>{
 
 	@Override
 	@Transactional
-	public Municipio buscar(Municipio municipio) {
-		return this.municipioRepository.findOne(municipio.getId());
+	public Municipio buscarPorId(Long id) {
+		return this.municipioRepository.findOne(id);
 	}
 
 	@Override

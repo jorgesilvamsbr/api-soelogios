@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,13 @@ public class EmpresaServicoAdapterTest extends TesteBase{
 	@Autowired
 	private MunicipioRepository municipioRepository;
 
+	private int QTD_DE_EMRPESAS_NO_BANCO;
+
+	@Before
+	public void init(){
+		QTD_DE_EMRPESAS_NO_BANCO = empresaServicoAdapter.buscarTodas().size();
+	}
+	
 	@Test
 	public void deve_salvar_uma_empresa() throws Exception {
 		Empresa empresa = EmpresaBuilder.novo().criar();
@@ -41,7 +49,7 @@ public class EmpresaServicoAdapterTest extends TesteBase{
 		int quantidadeEsperada = 3;
 		empresaCriar(quantidadeEsperada);
 
-		assertEquals(quantidadeEsperada, empresaServicoAdapter.obterQuantidadeTotal());
+		assertEquals(QTD_DE_EMRPESAS_NO_BANCO + quantidadeEsperada, empresaServicoAdapter.obterQuantidadeTotal());
 	}
 	
 	@Test
@@ -51,8 +59,7 @@ public class EmpresaServicoAdapterTest extends TesteBase{
 		
 		empresaServicoAdapter.excluir(empresaASerExcluida);
 		
-		assertNull(empresaServicoAdapter.buscar(empresaASerExcluida));
-		assertEquals(1, empresaServicoAdapter.obterQuantidadeTotal());
+		assertNull(empresaServicoAdapter.buscarPorId(empresaASerExcluida.getId()));
 	}
 	
 	@Test
@@ -62,7 +69,7 @@ public class EmpresaServicoAdapterTest extends TesteBase{
 		
 		List<Empresa> empresas = empresaServicoAdapter.buscarTodas();
 		
-		assertEquals(qtdEsperada, empresas.size());
+		assertEquals(QTD_DE_EMRPESAS_NO_BANCO + qtdEsperada, empresas.size());
 		assertTrue(empresas.stream().allMatch(emp -> emp.getId() != null));
 	}
 

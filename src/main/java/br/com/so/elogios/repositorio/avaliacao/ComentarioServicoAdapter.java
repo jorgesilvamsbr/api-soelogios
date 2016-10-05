@@ -40,8 +40,8 @@ public class ComentarioServicoAdapter implements ServicoAdapterBase<Comentario>{
 
 	@Transactional
 	@Override
-	public Comentario buscar(Comentario comentario) {
-		return this.comentarioRepository.findOne(comentario.getId());
+	public Comentario buscarPorId(Long id) {
+		return this.comentarioRepository.findOne(id);
 	}
 
 	@Transactional

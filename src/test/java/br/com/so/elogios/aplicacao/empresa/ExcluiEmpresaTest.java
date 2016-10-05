@@ -1,6 +1,6 @@
 package br.com.so.elogios.aplicacao.empresa;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,11 +17,9 @@ import br.com.so.elogios.testebase.TesteBase;
 @RunWith(SpringRunner.class)
 public class ExcluiEmpresaTest extends TesteBase {
 
-	private static final int UM = 1;
 	@Autowired private MunicipioRepository municipioRepository;
 	@Autowired private EmpresaRepository empresaRepository;
 	@Autowired private ExcluiEmpresa excluiEmpresa;
-	@Autowired private ConsultaEmpresa consultaEmpresa;
 
 
 	@Test
@@ -32,8 +30,6 @@ public class ExcluiEmpresaTest extends TesteBase {
 		excluiEmpresa.excluir(empresaASerExcluida.getId());
 		
 		assertNull(empresaRepository.findOne(empresaASerExcluida.getId()));
-		assertEquals(UM, consultaEmpresa.buscarTodas().size());
-		
 	}
 	
 

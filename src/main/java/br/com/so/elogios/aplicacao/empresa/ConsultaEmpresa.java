@@ -8,27 +8,27 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.so.elogios.dominio.empresa.Empresa;
-import br.com.so.elogios.repositorio.empresa.EmpresaRepository;
+import br.com.so.elogios.repositorio.empresa.EmpresaServicoAdapter;
 
 @Service
 public class ConsultaEmpresa {
 
-	private final EmpresaRepository empresaRepository;
+	private final EmpresaServicoAdapter empresaServicoAdapter;
 	
 	@Autowired
-	public ConsultaEmpresa(EmpresaRepository empresaRepository) {
-		this.empresaRepository = empresaRepository;
+	public ConsultaEmpresa(EmpresaServicoAdapter empresaServicoAdapter) {
+		this.empresaServicoAdapter = empresaServicoAdapter;
 	}
 	
 	@Transactional
 	public List<EmpresaResponse> buscarTodas() {
-		List<Empresa> empresas = (List<Empresa>) empresaRepository.findAll();
+		List<Empresa> empresas = (List<Empresa>) empresaServicoAdapter.buscarTodas();
 		return empresas.stream().map(this::criarEmpresaResponse).collect(Collectors.toList());
 	}
 
 	@Transactional
 	public EmpresaResponse buscarPorId(Long id) {
-		Empresa empresa = empresaRepository.findOne(id);
+		Empresa empresa = empresaServicoAdapter.buscarPorId(id);
 		return criarEmpresaResponse(empresa);
 	}
 

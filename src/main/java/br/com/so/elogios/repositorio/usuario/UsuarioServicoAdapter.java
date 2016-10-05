@@ -40,8 +40,8 @@ public class UsuarioServicoAdapter implements ServicoAdapterBase<Usuario>{
 
 	@Transactional
 	@Override
-	public Usuario buscar(Usuario usuario) {
-		return this.usuarioRepository.findOne(usuario.getId());
+	public Usuario buscarPorId(Long id) {
+		return this.usuarioRepository.findOne(id);
 	}
 
 	@Transactional

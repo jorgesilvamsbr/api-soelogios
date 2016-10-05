@@ -4,21 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.so.elogios.repositorio.empresa.EmpresaRepository;
+import br.com.so.elogios.dominio.empresa.Empresa;
+import br.com.so.elogios.repositorio.empresa.EmpresaServicoAdapter;
 
 @Service
 public class ExcluiEmpresa {
 
-	private final EmpresaRepository empresaRepository;
+	private final EmpresaServicoAdapter empresaServicoAdapter;
 	
 	@Autowired
-	public ExcluiEmpresa(EmpresaRepository empresaRepository) {
-		this.empresaRepository = empresaRepository;
+	public ExcluiEmpresa(EmpresaServicoAdapter empresaServicoAdapter) {
+		this.empresaServicoAdapter = empresaServicoAdapter;
 	}
 	
 	@Transactional
 	public void excluir(Long id) {
-		empresaRepository.delete(id);
+		Empresa empresa = empresaServicoAdapter.buscarPorId(id);
+		empresaServicoAdapter.excluir(empresa);
 	}
 
 }

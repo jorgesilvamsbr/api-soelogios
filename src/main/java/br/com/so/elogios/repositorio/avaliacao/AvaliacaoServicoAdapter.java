@@ -40,8 +40,8 @@ public class AvaliacaoServicoAdapter implements ServicoAdapterBase<Avaliacao> {
 
 	@Transactional
 	@Override
-	public Avaliacao buscar(Avaliacao avaliacao) {
-		return this.avaliacaoRepository.findOne(avaliacao.getId());
+	public Avaliacao buscarPorId(Long id) {
+		return this.avaliacaoRepository.findOne(id);
 	}
 
 	@Transactional

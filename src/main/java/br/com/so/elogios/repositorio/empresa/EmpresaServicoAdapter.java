@@ -40,8 +40,8 @@ public class EmpresaServicoAdapter implements ServicoAdapterBase<Empresa> {
 
 	@Override
 	@Transactional
-	public Empresa buscar(Empresa empresa) {
-		return empresaRepository.findOne(empresa.getId());
+	public Empresa buscarPorId(Long id) {
+		return empresaRepository.findOne(id);
 	}
 
 	@Override
