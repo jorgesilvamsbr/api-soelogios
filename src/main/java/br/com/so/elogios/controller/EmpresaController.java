@@ -53,20 +53,21 @@ public class EmpresaController {
 		this.adicionaEmpresa.adicionar(empresaRequest);
 		return criarRespostaComAEmpresaAdicionada(empresaRequest);
 	}
-	
-	private ResponseEntity<?> criarRespostaComAEmpresaAdicionada(EmpresaRequest empresaRequest) {
-		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(empresaRequest.getId()).toUri());
-		return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
-	}
 
 	@RequestMapping(method=RequestMethod.PUT)
-	public void alterar(@RequestBody EmpresaRequest empresaRequest) throws ExcecaoDeCampoObrigatorio{
+	public ResponseEntity<?> alterar(@RequestBody EmpresaRequest empresaRequest) throws ExcecaoDeCampoObrigatorio{
 		this.alteraEmpresa.alterar(empresaRequest);
+		return criarRespostaComAEmpresaAdicionada(empresaRequest);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/{id}")
 	public void remover(@PathVariable Long id){
 		this.excluiEmpresa.excluir(id);
+	}
+	
+	private ResponseEntity<?> criarRespostaComAEmpresaAdicionada(EmpresaRequest empresaRequest) {
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(empresaRequest.getId()).toUri());
+		return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
 	}
 }
