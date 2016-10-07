@@ -44,4 +44,31 @@ public class Endereco {
 	public Municipio getMunicipio() {
 		return municipio;
 	}
+
+	public void alterarEnderecoCompleto(String enderecoCompleto) throws ExcecaoDeCampoObrigatorio {
+		validarSeEstaVazio(enderecoCompleto, "Endereco não informado");
+		this.enderecoCompleto = enderecoCompleto;
+	}
+
+	public void alterarCep(String cep) throws ExcecaoDeCampoObrigatorio {
+		validarSeEstaVazio(cep, "O cep não foi informado");
+		this.cep = cep;
+	}
+	
+	public void alterarMunicipio(Municipio municipio) throws ExcecaoDeCampoObrigatorio {
+		validarSeEstaNulo(municipio, "Municpio não informado");
+		this.municipio = municipio;
+	}
+	
+	private void validarSeEstaNulo(Municipio municipio, String mensagem) throws ExcecaoDeCampoObrigatorio {
+		new ExcecaoDeCampoObrigatorio()
+		.quandoNulo(municipio, mensagem)
+		.entaoDispara();
+	}
+
+	private void validarSeEstaVazio(String campo, String mensagem) throws ExcecaoDeCampoObrigatorio {
+		new ExcecaoDeCampoObrigatorio()
+		.quandoVazio(campo, mensagem)
+		.entaoDispara();
+	}
 }

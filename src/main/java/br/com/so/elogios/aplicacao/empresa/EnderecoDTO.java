@@ -8,6 +8,9 @@ public class EnderecoDTO {
 	private String cep;
 	private Municipio municipio;
 
+	public EnderecoDTO() {
+	}
+	
 	public EnderecoDTO(String enderecoCompleto, String cep, Municipio municipio) {
 		this.enderecoCompleto = enderecoCompleto;
 		this.cep = cep;

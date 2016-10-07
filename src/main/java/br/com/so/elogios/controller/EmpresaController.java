@@ -3,11 +3,15 @@ package br.com.so.elogios.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.so.elogios.aplicacao.empresa.AdicionaEmpresa;
 import br.com.so.elogios.aplicacao.empresa.AlteraEmpresa;
@@ -27,8 +31,7 @@ public class EmpresaController {
 	private final AlteraEmpresa alteraEmpresa;
 
 	@Autowired
-	public EmpresaController(ConsultaEmpresa consultaEmpresa, AdicionaEmpresa adicionaEmpresa,
-			ExcluiEmpresa excluiEmpresa, AlteraEmpresa alteraEmpresa) {
+	public EmpresaController(ConsultaEmpresa consultaEmpresa, AdicionaEmpresa adicionaEmpresa, ExcluiEmpresa excluiEmpresa, AlteraEmpresa alteraEmpresa) {
 		this.consultaEmpresa = consultaEmpresa;
 		this.adicionaEmpresa = adicionaEmpresa;
 		this.excluiEmpresa = excluiEmpresa;
@@ -46,10 +49,17 @@ public class EmpresaController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public void adicionar(@RequestBody EmpresaRequest empresaRequest) throws ExcecaoDeCampoObrigatorio{
+	public ResponseEntity<?> adicionar(@RequestBody EmpresaRequest empresaRequest) throws ExcecaoDeCampoObrigatorio{
 		this.adicionaEmpresa.adicionar(empresaRequest);
+		return criarRespostaComAEmpresaAdicionada(empresaRequest);
 	}
 	
+	private ResponseEntity<?> criarRespostaComAEmpresaAdicionada(EmpresaRequest empresaRequest) {
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(empresaRequest.getId()).toUri());
+		return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
+	}
+
 	@RequestMapping(method=RequestMethod.PUT)
 	public void alterar(@RequestBody EmpresaRequest empresaRequest) throws ExcecaoDeCampoObrigatorio{
 		this.alteraEmpresa.alterar(empresaRequest);

@@ -9,6 +9,9 @@ public class EmpresaRequest {
 	private EnderecoDTO enderecoDTO;
 	private Long id;
 
+	public EmpresaRequest() {
+	}
+	
 	public EmpresaRequest(String nome, String ramo, EnderecoDTO enderecoDTO) {
 		this.nome = nome;
 		this.ramo = ramo;
