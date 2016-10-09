@@ -18,14 +18,23 @@ public class AlteraAvaliacao {
 	public AlteraAvaliacao(AvaliacaoServicoAdapter avaliacaoServicoAdapter) {
 		this.avaliacaoServicoAdapter = avaliacaoServicoAdapter;
 	}
-	
+
 	@Transactional
 	public void alterar(AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio {
 		Avaliacao avaliacao = avaliacaoServicoAdapter.buscarPorId(avaliacaoRequest.getId());
-		
+
 		avaliacao.alterarDescricao(avaliacaoRequest.getDescricao());
-		
+
 		avaliacaoServicoAdapter.salvar(avaliacao);
 	}
 
+	@Transactional
+	public void curtir(AvaliacaoRequest avaliacaoRequest) {
+		Avaliacao avaliacao = avaliacaoServicoAdapter.buscarPorId(avaliacaoRequest.getId());
+
+		avaliacao.curtir();
+
+		avaliacaoServicoAdapter.salvar(avaliacao);
+
+	}
 }

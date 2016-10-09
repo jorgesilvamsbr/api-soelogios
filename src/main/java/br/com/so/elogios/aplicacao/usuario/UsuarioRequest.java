@@ -8,6 +8,9 @@ UsuarioRequest {
 	private String senha;
 	private Long id;
 
+	public UsuarioRequest() {
+	}
+	
 	public UsuarioRequest(String nome, String email, String senha) {
 		this.setNome(nome);
 		this.setEmail(email);

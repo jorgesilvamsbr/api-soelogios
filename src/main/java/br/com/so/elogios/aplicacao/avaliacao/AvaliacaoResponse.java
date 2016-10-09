@@ -10,6 +10,8 @@ public class AvaliacaoResponse {
 	private int curtidas;
 	private String descricao;
 	private TipoDeAvaliacao tipoDeAvaliacao;
+	private String nomeDoUsuario;
+	private String emailDoUsuario;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -58,5 +60,21 @@ public class AvaliacaoResponse {
 	
 	public TipoDeAvaliacao getTipoDeAvaliacao() {
 		return tipoDeAvaliacao;
+	}
+
+	public void setNomeDoUsuario(String nomeDoUsuario) {
+		this.nomeDoUsuario = nomeDoUsuario;
+	}
+	
+	public String getNomeDoUsuario() {
+		return nomeDoUsuario;
+	}
+
+	public void setEmailDoUsuario(String emailDoUsuario) {
+		this.emailDoUsuario = emailDoUsuario;
+	}
+	
+	public String getEmailDoUsuario() {
+		return emailDoUsuario;
 	}
 }

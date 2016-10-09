@@ -47,6 +47,18 @@ public class AlteraAvaliacaoTest extends TesteBase {
 		assertEquals(novaDescricao, avaliacaoRetornada.getDescricao());
 	}
 	
+	@Test
+	public void deve_ser_possivel_curtir_uma_avaliacao() throws Exception {
+		Avaliacao avaliacao = criarAvaliacao();
+		AvaliacaoRequest avaliacaoRequest = new AvaliacaoRequest();
+		avaliacaoRequest.setId(avaliacao.getId());
+		
+		alteraAvaliacao.curtir(avaliacaoRequest);
+		
+		Avaliacao avaliacaoRetornada = avaliacaoServicoAdapter.buscarPorId(avaliacaoRequest.getId());
+		assertEquals(1, avaliacaoRetornada.obterCurtidas());
+	}
+	
 	private Avaliacao criarAvaliacao() throws ExcecaoDeCampoObrigatorio, EmailInvalido {
 		Empresa empresa = EmpresaBuilder.novo().comEndereco(criarEndereco()).criar();
 		empresaServicoAdapter.salvar(empresa);
