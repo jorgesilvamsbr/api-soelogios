@@ -49,4 +49,9 @@ public class AvaliacaoServicoAdapter implements ServicoAdapterBase<Avaliacao> {
 	public List<Avaliacao> buscarTodas() {
 		return (List<Avaliacao>) this.avaliacaoRepository.findAll();
 	}
+
+	@Transactional
+	public List<Avaliacao> buscarPorIdDaEmresa(Long idDaEmpresa) {
+		return this.avaliacaoRepository.buscarTodosDeUmaEmpresa(idDaEmpresa);
+	}
 }
