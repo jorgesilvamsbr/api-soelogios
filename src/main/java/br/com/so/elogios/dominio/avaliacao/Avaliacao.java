@@ -63,4 +63,15 @@ public class Avaliacao extends EntidadeBase {
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
+
+	public void alterarDescricao(String novaDescricao) throws ExcecaoDeCampoObrigatorio {
+		validarSeNaoEstaVazio(novaDescricao, "Descrição informada esta vazia");
+		this.descricao = novaDescricao;
+	}
+
+	private void validarSeNaoEstaVazio(String campo, String mensagem) throws ExcecaoDeCampoObrigatorio {
+		new ExcecaoDeCampoObrigatorio()
+		.quandoVazio(campo, mensagem)
+		.entaoDispara();
+	}
 }

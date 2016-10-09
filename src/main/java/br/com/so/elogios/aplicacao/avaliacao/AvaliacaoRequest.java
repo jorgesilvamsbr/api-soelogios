@@ -11,6 +11,9 @@ public class AvaliacaoRequest {
 	private String descricao;
 	private TipoDeAvaliacao avaliacao;
 	private Long id;
+	
+	public AvaliacaoRequest() {
+	}
 
 	public AvaliacaoRequest(UsuarioRequest usuarioRequest, EmpresaRequest empresaRequest, String descricao,
 			TipoDeAvaliacao elogio) {
