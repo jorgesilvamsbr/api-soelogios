@@ -31,6 +31,12 @@ public class ConsultaAvaliacao {
 		List<Avaliacao> avaliacoes = avaliacaoServicoAdapter.buscarPorIdDaEmresa(id);
 		return avaliacoes.stream().map(this::criarAvaliacaoResponse).collect(Collectors.toList());
 	}
+
+	@Transactional
+	public List<AvaliacaoResponse> buscarPeloIdDoUsuario(Long id) {
+		List<Avaliacao> avaliacoes = avaliacaoServicoAdapter.buscarPorIdDoUsuario(id);
+		return avaliacoes.stream().map(this::criarAvaliacaoResponse).collect(Collectors.toList());
+	}
 	
 	private AvaliacaoResponse criarAvaliacaoResponse(Avaliacao avaliacao){
 		AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse();
@@ -42,5 +48,4 @@ public class ConsultaAvaliacao {
 		avaliacaoResponse.setTipo(avaliacao.getTipo());
 		return avaliacaoResponse;
 	}
-
 }

@@ -56,6 +56,19 @@ public class AvaliacaoServicoAdapterTest extends TesteBase {
 	
 	@Test
 	public void deve_buscar_uma_avaliacao_de_uma_empresa_especifica() throws Exception {
+		Usuario soElogios = UsuarioBuilder.novo().comEmail("soelogios@soelogios.com.br").criar();
+		usuarioServicoAdapter.salvar(soElogios);
+		criarAvaliacaoParaOUsuario(usuario);
+		criarAvaliacaoParaOUsuario(soElogios);
+		criarAvaliacaoParaOUsuario(soElogios);
+		
+		List<Avaliacao> avaliacoes = avaliacaoServicoAdapter.buscarPorIdDaEmresa(soElogios.getId());
+		
+		assertTrue(avaliacoes.stream().allMatch(ava -> ava.getEmpresa().getId().equals(soElogios.getId())));
+	}
+	
+	@Test
+	public void deve_buscar_uma_avaliacao_de_um_usuario_especifico() throws Exception {
 		Empresa empresa = EmpresaBuilder.novo().comEndereco(endereco).criar();
 		empresaServicoAdapter.salvar(empresa);
 		Avaliacao avaliacao1 = AvaliacaoBuilder.novo().comUsuario(usuario).comEmpresa(empresa).criar();
@@ -66,5 +79,12 @@ public class AvaliacaoServicoAdapterTest extends TesteBase {
 		List<Avaliacao> avaliacoes = avaliacaoServicoAdapter.buscarPorIdDaEmresa(empresa.getId());
 		
 		assertTrue(avaliacoes.stream().allMatch(ava -> ava.getEmpresa().getId().equals(empresa.getId())));
+	}
+	
+	private void criarAvaliacaoParaOUsuario(Usuario soElogios) throws ExcecaoDeCampoObrigatorio, EmailInvalido {
+		Empresa empresa = EmpresaBuilder.novo().comEndereco(endereco).criar();
+		empresaServicoAdapter.salvar(empresa);
+		Avaliacao avaliacao2 = AvaliacaoBuilder.novo().comUsuario(soElogios).comEmpresa(empresa).criar();
+		avaliacaoServicoAdapter.salvar(avaliacao2);
 	}
 }

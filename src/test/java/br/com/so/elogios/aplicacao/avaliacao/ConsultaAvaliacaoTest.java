@@ -71,6 +71,28 @@ public class ConsultaAvaliacaoTest extends TesteBase {
 		
 		assertTrue(avaliacoes.stream().allMatch(avaliacao -> avaliacao.getIdDaEmpresa().equals(masseria.getId())));
 	}
+	
+	@Test
+	public void deve_consultar_avaliacoes_de_um_usuario() throws Exception {
+		Usuario jorgeSilva = UsuarioBuilder.novo().comNome("Jorge Silva").criar();
+		usuarioServicoAdapter.salvar(jorgeSilva);
+		Usuario jonasMadureira = UsuarioBuilder.novo().comNome("Jonas Madureira").criar();
+		usuarioServicoAdapter.salvar(jonasMadureira);
+		criarAvaliacaoParaOUsuario(jonasMadureira);
+		criarAvaliacaoParaOUsuario(jorgeSilva);
+		criarAvaliacaoParaOUsuario(jorgeSilva);
+		
+		List<AvaliacaoResponse> avaliacoes = consultaAvalicao.buscarPeloIdDoUsuario(jorgeSilva.getId());
+		
+		assertTrue(avaliacoes.stream().allMatch(avaliacao -> avaliacao.getIdDoUsuario().equals(jorgeSilva.getId())));
+	}
+
+	private void criarAvaliacaoParaOUsuario(Usuario usuario) throws ExcecaoDeCampoObrigatorio, EmailInvalido {
+		Empresa empresa = EmpresaBuilder.novo().comEndereco(criarEndereco()).criar();
+		empresaServicoAdapter.salvar(empresa);
+		Avaliacao avaliacao = AvaliacaoBuilder.novo().comEmpresa(empresa).comUsuario(usuario).criar();
+		avaliacaoServicoAdapter.salvar(avaliacao);
+	}
 
 	private void criarAvaliacaoPara(Empresa empresa) throws ExcecaoDeCampoObrigatorio, EmailInvalido {
 		empresa.alterarEndereco(criarEndereco());

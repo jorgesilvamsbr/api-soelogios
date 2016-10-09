@@ -15,4 +15,7 @@ public interface AvaliacaoRepository extends CrudRepository<Avaliacao, Long>{
 	@Query("SELECT a FROM Avaliacao a WHERE empresa_id = :idDaEmpresa")
 	List<Avaliacao> buscarTodosDeUmaEmpresa(@Param("idDaEmpresa") Long idDaEmpresa);
 
+	@Query("SELECT a FROM Avaliacao a WHERE usuario_id = :idDoUsuario")
+	List<Avaliacao> buscarTodosDeUmUsuario(@Param("idDoUsuario") Long idDoUsuario);
+
 }
