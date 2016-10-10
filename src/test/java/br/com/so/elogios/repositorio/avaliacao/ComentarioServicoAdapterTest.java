@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -65,8 +64,11 @@ public class ComentarioServicoAdapterTest extends TesteBase{
 		avaliacaoServicoAdapter.salvar(avaliacao2);
 		Comentario comentario = ComentarioBuilder.novo().comAvaliacao(avaliacao).comUsuario(usuario).criar();
 		Comentario comentario2 = ComentarioBuilder.novo().comAvaliacao(avaliacao2).comUsuario(usuario).criar();
+		Comentario comentario3 = ComentarioBuilder.novo().comAvaliacao(avaliacao).comUsuario(usuario).criar();
+		
 		comentarioServicoAdapter.salvar(comentario);
 		comentarioServicoAdapter.salvar(comentario2);
+		comentarioServicoAdapter.salvar(comentario3);
 		
 		List<Comentario> comentarios = comentarioServicoAdapter.buscarPorIdDaAvaliacao(avaliacao.getId());
 		
