@@ -9,6 +9,8 @@ public class ComentarioRequest {
 	private UsuarioRequest usuarioRequest;
 	private Long id;
 
+	public ComentarioRequest(){}
+	
 	public ComentarioRequest(String descricao, AvaliacaoRequest avaliacaoRequest,
 			UsuarioRequest usuarioRequest) {
 				this.setDescricao(descricao);
