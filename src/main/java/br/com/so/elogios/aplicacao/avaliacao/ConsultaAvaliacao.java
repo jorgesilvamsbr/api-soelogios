@@ -23,7 +23,8 @@ public class ConsultaAvaliacao {
 	@Transactional
 	public List<AvaliacaoResponse> buscarTodas() {
 		List<Avaliacao> avaliacoes = avaliacaoServicoAdapter.buscarTodas();
-		return avaliacoes.stream().map(this::criarAvaliacaoResponse).collect(Collectors.toList());
+		List<AvaliacaoResponse> avaliacoesResponse = avaliacoes.stream().map(this::criarAvaliacaoResponse).collect(Collectors.toList());
+		return avaliacoesResponse.stream().sorted((a1, a2) -> a2.getId().compareTo(a1.getId())).collect(Collectors.toList());
 	}
 	
 	@Transactional

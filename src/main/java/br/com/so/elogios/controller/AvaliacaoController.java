@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -34,8 +35,8 @@ public class AvaliacaoController {
 	private final ExcluiAvaliacao excluiAvaliacao;
 
 	@Autowired
-	 public AvaliacaoController(ConsultaAvaliacao consultaAvaliacao, AdicionaAvaliacao adicionaAvaliacao, AlteraAvaliacao alteraAvaliacao,
-			 ExcluiAvaliacao excluiAvaliacao)  {
+	 public AvaliacaoController(ConsultaAvaliacao consultaAvaliacao, AdicionaAvaliacao adicionaAvaliacao,
+			 AlteraAvaliacao alteraAvaliacao, ExcluiAvaliacao excluiAvaliacao)  {
 		this.consultaAvaliacao = consultaAvaliacao;
 		this.adicionaAvaliacao = adicionaAvaliacao;
 		this.alteraAvaliacao = alteraAvaliacao;
@@ -43,7 +44,7 @@ public class AvaliacaoController {
 	}
 	 
 	@RequestMapping(method=RequestMethod.GET)
-	public List<AvaliacaoResponse> listar(){
+	public @ResponseBody List<AvaliacaoResponse> listar(){
 		return consultaAvaliacao.buscarTodas();
 	}
 	
@@ -69,7 +70,13 @@ public class AvaliacaoController {
 		return criarRespostaComAEmpresaAdicionada(avaliacaoRequest);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/{id}")
+	@RequestMapping(method=RequestMethod.PUT, value="/curtir")
+	public ResponseEntity<?> curtir(@RequestBody AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio{
+		this.alteraAvaliacao.curtir(avaliacaoRequest);
+		return criarRespostaComAEmpresaAdicionada(avaliacaoRequest);
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE)
 	public void remover(@RequestBody AvaliacaoRequest avaliacaoRequest){
 		this.excluiAvaliacao.excluir(avaliacaoRequest);
 	}
