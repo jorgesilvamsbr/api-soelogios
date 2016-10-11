@@ -49,4 +49,9 @@ public class ComentarioServicoAdapter implements ServicoAdapterBase<Comentario>{
 	public List<Comentario> buscarTodas() {
 		return (List<Comentario>) this.comentarioRepository.findAll();
 	}
+
+	@Transactional
+	public List<Comentario> buscarPorIdDaAvaliacao(Long id) {
+		return this.comentarioRepository.buscarTodosDeUmaAvaliacao(id);
+	}
 }
