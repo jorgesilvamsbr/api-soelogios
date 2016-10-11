@@ -1,7 +1,6 @@
 package br.com.so.elogios.aplicacao.avaliacao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -83,6 +82,15 @@ public class ConsultaAvaliacaoTest extends TesteBase {
 		List<AvaliacaoResponse> avaliacoes = consultaAvalicao.buscarPeloIdDoUsuario(jorgeSilva.getId());
 		
 		assertTrue(avaliacoes.stream().allMatch(avaliacao -> avaliacao.getIdDoUsuario().equals(jorgeSilva.getId())));
+	}
+	
+	@Test
+	public void deve_buscar_uma_avaliacao_especifica() throws Exception {
+		Avaliacao avaliacao = criarAvaliacao();
+		
+		AvaliacaoResponse avaliacaoResponse = consultaAvalicao.buscarPorId(avaliacao.getId());
+		
+		assertEquals(avaliacao.getDescricao(), avaliacaoResponse.getDescricao());
 	}
 
 	private void criarAvaliacaoParaOUsuario(Usuario usuario) throws ExcecaoDeCampoObrigatorio, EmailInvalido {

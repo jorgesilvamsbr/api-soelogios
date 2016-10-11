@@ -39,6 +39,12 @@ public class ConsultaAvaliacao {
 		return avaliacoes.stream().map(this::criarAvaliacaoResponse).collect(Collectors.toList());
 	}
 	
+	@Transactional
+	public AvaliacaoResponse buscarPorId(Long id) {
+		Avaliacao avaliacao = avaliacaoServicoAdapter.buscarPorId(id);
+		return criarAvaliacaoResponse(avaliacao);
+	}
+	
 	private AvaliacaoResponse criarAvaliacaoResponse(Avaliacao avaliacao){
 		AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse();
 		avaliacaoResponse.setId(avaliacao.getId());

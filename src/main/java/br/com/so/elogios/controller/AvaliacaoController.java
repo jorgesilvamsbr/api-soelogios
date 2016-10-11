@@ -1,5 +1,6 @@
 package br.com.so.elogios.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,11 @@ public class AvaliacaoController {
 		return consultaAvaliacao.buscarTodas();
 	}
 	
+	@RequestMapping(method=RequestMethod.GET, value="/{id}")
+	public AvaliacaoResponse buscarPorId(@PathVariable Long id){
+		return this.consultaAvaliacao.buscarPorId(id);
+	}
+	
 	@RequestMapping(method=RequestMethod.GET, value="/empresa/{id}")
 	public List<AvaliacaoResponse> buscarPorIdDaEmpresa(@PathVariable Long id){
 		return consultaAvaliacao.buscarPeloIdDaEmpresa(id);
@@ -59,19 +65,19 @@ public class AvaliacaoController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<?> adicionar(@RequestBody AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio, EmailInvalido{
+	public ResponseEntity<AvaliacaoResponse> adicionar(@RequestBody AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio, EmailInvalido{
 		this.adicionaAvaliacao.adicionar(avaliacaoRequest);
 		return criarRespostaComAEmpresaAdicionada(avaliacaoRequest);
 	}
 
 	@RequestMapping(method=RequestMethod.PUT)
-	public ResponseEntity<?> alterar(@RequestBody AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio{
+	public ResponseEntity<AvaliacaoResponse> alterar(@RequestBody AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio{
 		this.alteraAvaliacao.alterar(avaliacaoRequest);
 		return criarRespostaComAEmpresaAdicionada(avaliacaoRequest);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/curtir")
-	public ResponseEntity<?> curtir(@RequestBody AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio{
+	public ResponseEntity<AvaliacaoResponse> curtir(@RequestBody AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio{
 		this.alteraAvaliacao.curtir(avaliacaoRequest);
 		return criarRespostaComAEmpresaAdicionada(avaliacaoRequest);
 	}
@@ -81,9 +87,9 @@ public class AvaliacaoController {
 		this.excluiAvaliacao.excluir(avaliacaoRequest);
 	}
 	
-	private ResponseEntity<?> criarRespostaComAEmpresaAdicionada(AvaliacaoRequest avaliacaoRequest) {
+	private ResponseEntity<AvaliacaoResponse> criarRespostaComAEmpresaAdicionada(AvaliacaoRequest avaliacaoRequest) {
 		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(avaliacaoRequest.getId()).toUri());
-		return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
+		httpHeaders.setLocation(URI.create(ServletUriComponentsBuilder.fromCurrentRequestUri().toUriString()));
+		return new ResponseEntity<AvaliacaoResponse>(buscarPorId(avaliacaoRequest.getId()), httpHeaders, HttpStatus.OK);
 	}
 }
