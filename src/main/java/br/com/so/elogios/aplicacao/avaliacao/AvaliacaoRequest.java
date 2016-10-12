@@ -11,6 +11,8 @@ public class AvaliacaoRequest {
 	private String descricao;
 	private TipoDeAvaliacao avaliacao;
 	private Long id;
+	private String idApiGoogle;
+	private String urlIconeApiGoogle;
 	
 	public AvaliacaoRequest() {
 	}
@@ -61,5 +63,21 @@ public class AvaliacaoRequest {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getIdApiGoogle() {
+		return this.idApiGoogle;
+	}
+	
+	public void setIdApiGoogle(String idApiGoogle) {
+		this.idApiGoogle = idApiGoogle;
+	}
+
+	public String getUrlIconeApiGoogle() {
+		return this.urlIconeApiGoogle;
+	}
+	
+	public void setUrlIconeApiGoogle(String urlIconeApiGoogle) {
+		this.urlIconeApiGoogle = urlIconeApiGoogle;
 	}
 }

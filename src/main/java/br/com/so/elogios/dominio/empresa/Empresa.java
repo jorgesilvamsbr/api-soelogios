@@ -17,6 +17,10 @@ public class Empresa extends EntidadeBase{
 	@Embedded
 	private Endereco endereco;
 
+	private String urlApiGoogle;
+
+	private String idApiDoGoogle;
+
 	Empresa() {
 	}
 	
@@ -68,5 +72,23 @@ public class Empresa extends EntidadeBase{
 
 	private void validarSeOCampoEstaVazio(String campo, String mensagem) throws ExcecaoDeCampoObrigatorio {
 		new ExcecaoDeCampoObrigatorio().quandoVazio(campo, mensagem).entaoDispara();
+	}
+
+	public void inserirUrlIconeApiGoogle(String urlApiGoogle) {
+		this.urlApiGoogle = urlApiGoogle;
+	}
+	
+	public String getUrlIconeApiGoogle() throws ExcecaoDeCampoObrigatorio {
+		validarSeOCampoEstaVazio(urlApiGoogle, "Url informada esta vazia");
+		return urlApiGoogle;
+	}
+
+	public void inserirIdApiGoogle(String idApiDoGoogle) throws ExcecaoDeCampoObrigatorio {
+		validarSeOCampoEstaVazio(idApiDoGoogle, "Id da API Google esta vazio");
+		this.idApiDoGoogle = idApiDoGoogle;
+	}
+	
+	public String getIdApiDoGoogle() {
+		return idApiDoGoogle;
 	}
 }

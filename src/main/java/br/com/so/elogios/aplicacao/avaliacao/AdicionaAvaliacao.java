@@ -15,6 +15,7 @@ import br.com.so.elogios.dominio.usuario.EmailInvalido;
 import br.com.so.elogios.dominio.usuario.Usuario;
 import br.com.so.elogios.repositorio.avaliacao.AvaliacaoServicoAdapter;
 import br.com.so.elogios.repositorio.empresa.EmpresaServicoAdapter;
+import br.com.so.elogios.repositorio.municipio.MunicipioServicoAdapter;
 import br.com.so.elogios.repositorio.usuario.UsuarioServicoAdapter;
 
 @Service
@@ -23,13 +24,15 @@ public class AdicionaAvaliacao {
 	private final AvaliacaoServicoAdapter avaliacaoServicoAdapter;
 	private final EmpresaServicoAdapter empresaServicoAdapter;
 	private final UsuarioServicoAdapter usuarioServicoAdapter;
+	private final MunicipioServicoAdapter municipioServicoAdapter;
 	
 	@Autowired
 	public AdicionaAvaliacao(AvaliacaoServicoAdapter avaliacaoServicoAdapter, EmpresaServicoAdapter empresaServicoAdapter,
-			UsuarioServicoAdapter usuarioServicoAdapter) {
+			UsuarioServicoAdapter usuarioServicoAdapter, MunicipioServicoAdapter municipioServicoAdapter) {
 		this.avaliacaoServicoAdapter = avaliacaoServicoAdapter;
 		this.empresaServicoAdapter = empresaServicoAdapter;
 		this.usuarioServicoAdapter = usuarioServicoAdapter;
+		this.municipioServicoAdapter = municipioServicoAdapter;
 	}
 	
 	@Transactional
@@ -55,6 +58,8 @@ public class AdicionaAvaliacao {
 		EmpresaRequest empresaRequest = avaliacaoRequest.getEmpresaRequest();
 		if(empresaRequest.getId() == null){
 			Empresa empresa = new Empresa(empresaRequest.getNome(), empresaRequest.getRamo(), criarEndereco(empresaRequest));
+			empresa.inserirIdApiGoogle(avaliacaoRequest.getIdApiGoogle());
+			empresa.inserirUrlIconeApiGoogle(avaliacaoRequest.getUrlIconeApiGoogle());
 			empresaServicoAdapter.salvar(empresa);
 			return empresa;
 		}
@@ -63,6 +68,7 @@ public class AdicionaAvaliacao {
 
 	private Endereco criarEndereco(EmpresaRequest empresaRequest) throws ExcecaoDeCampoObrigatorio {
 		Municipio municipio = new Municipio(empresaRequest.getMunicipio().getNome());
+		municipioServicoAdapter.salvar(municipio);
 		return new Endereco(empresaRequest.getEnderecoCompleto(), empresaRequest.getCep(), municipio);
 	}
 }

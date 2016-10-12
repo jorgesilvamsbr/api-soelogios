@@ -105,4 +105,36 @@ public class EmpresaTest {
 		
 		empresa.alterarRamoDeNegocio(VAZIO);
 	}
+	
+	@Test
+	public void deve_conter_a_url_da_imagem_google() throws Exception {
+		Empresa empresa = EmpresaBuilder.novo().criar();
+		String urlEsperada = "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png";
+		
+		empresa.inserirUrlIconeApiGoogle(urlEsperada);
+		
+		assertEquals(urlEsperada, empresa.getUrlIconeApiGoogle());
+	}
+	
+	
+	@Test(expected=ExcecaoDeCampoObrigatorio.class)
+	public void a_url_do_icone_da_api_google_nao_deve_ser_vazia() throws Exception {
+		EmpresaBuilder.novo().comUrlDoIconeApiGoogle("").criar();
+	}
+
+	@Test
+	public void deve_conter_do_id_da_imagem_google() throws Exception {
+		Empresa empresa = EmpresaBuilder.novo().criar();
+		String idApiDoGoogle = "9fc2c43d89ea2096d982d470d7b9b68cd6f733cf";
+		
+		empresa.inserirIdApiGoogle(idApiDoGoogle);
+		
+		assertEquals(idApiDoGoogle, empresa.getIdApiDoGoogle());
+	}
+	
+	
+	@Test(expected=ExcecaoDeCampoObrigatorio.class)
+	public void a_url_do_id_google_nao_deve_ser_vazia() throws Exception {
+		EmpresaBuilder.novo().comIdApiGoogle("").criar();
+	}
 }
