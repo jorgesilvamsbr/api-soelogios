@@ -12,6 +12,8 @@ public class AvaliacaoResponse {
 	private TipoDeAvaliacao tipoDeAvaliacao;
 	private String nomeDoUsuario;
 	private String emailDoUsuario;
+	private String nomeDaEmpresa;
+	private String enderecoCompletoDaEmpresa;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -76,5 +78,21 @@ public class AvaliacaoResponse {
 	
 	public String getEmailDoUsuario() {
 		return emailDoUsuario;
+	}
+
+	public void setNomeDaEmpresa(String nomeDaEmpresa) {
+		this.nomeDaEmpresa = nomeDaEmpresa;
+	}
+	
+	public String getNomeDaEmpresa() {
+		return nomeDaEmpresa;
+	}
+
+	public void setEndereoDaEmpresa(String enderecoCompletoDaEmpresa) {
+		this.enderecoCompletoDaEmpresa = enderecoCompletoDaEmpresa;
+	}
+	
+	public String getEnderecoCompletoDaEmpresa() {
+		return enderecoCompletoDaEmpresa;
 	}
 }

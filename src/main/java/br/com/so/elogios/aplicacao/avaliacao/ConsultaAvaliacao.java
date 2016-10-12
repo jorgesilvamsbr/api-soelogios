@@ -49,6 +49,8 @@ public class ConsultaAvaliacao {
 		AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse();
 		avaliacaoResponse.setId(avaliacao.getId());
 		avaliacaoResponse.setIdDaEmpresa(avaliacao.getEmpresa().getId());
+		avaliacaoResponse.setNomeDaEmpresa(avaliacao.getEmpresa().getNome());
+		avaliacaoResponse.setEndereoDaEmpresa(avaliacao.getEmpresa().getEndereco().getEnderecoCompleto());
 		avaliacaoResponse.setIdDoUsuario(avaliacao.getUsuario().getId());
 		avaliacaoResponse.setNomeDoUsuario(avaliacao.getUsuario().getNome());
 		avaliacaoResponse.setEmailDoUsuario(avaliacao.getUsuario().getEmail());
