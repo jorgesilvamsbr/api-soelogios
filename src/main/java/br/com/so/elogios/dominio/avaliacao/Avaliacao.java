@@ -1,5 +1,6 @@
 package br.com.so.elogios.dominio.avaliacao;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -17,6 +18,7 @@ public class Avaliacao extends EntidadeBase {
 	@OneToOne
 	private Empresa empresa;
 	
+	@Column(length=500)
 	private String descricao;
 	private TipoDeAvaliacao tipo;
 	private int curtida;

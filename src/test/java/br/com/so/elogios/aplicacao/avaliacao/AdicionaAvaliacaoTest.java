@@ -50,7 +50,7 @@ public class AdicionaAvaliacaoTest extends TesteBase {
 	@Test
 	public void deve_ser_possivel_informar_um_elogio_para_uma_empresa() throws Exception {
 		String descricao = "Lanche muito da hora!";
-		AvaliacaoRequest avaliacaoRequest = new AvaliacaoRequest(criarUsuarioRequest(), criarEmpresaRequest(), descricao, TipoDeAvaliacao.ELOGIO);
+		AvaliacaoRequest avaliacaoRequest = new AvaliacaoRequest(criarUsuarioRequest(), criarEmpresaRequest(), descricao, TipoDeAvaliacao.ELOGIO, "", "");
 		
 		adicionaAvaliacao.adicionar(avaliacaoRequest);
 		
@@ -69,7 +69,7 @@ public class AdicionaAvaliacaoTest extends TesteBase {
 		EmpresaRequest empresaRequest = new EmpresaRequest();
 		empresaRequest.setId(empresa.getId());
 		String descricao = "Lanche muito da hora!";
-		AvaliacaoRequest avaliacaoRequest = new AvaliacaoRequest(criarUsuarioRequest(), empresaRequest, descricao, TipoDeAvaliacao.ELOGIO);
+		AvaliacaoRequest avaliacaoRequest = new AvaliacaoRequest(criarUsuarioRequest(), empresaRequest, descricao, TipoDeAvaliacao.ELOGIO, "", "");
 		
 		adicionaAvaliacao.adicionar(avaliacaoRequest);
 		

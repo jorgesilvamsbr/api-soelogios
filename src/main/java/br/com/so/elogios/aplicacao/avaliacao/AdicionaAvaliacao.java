@@ -68,7 +68,7 @@ public class AdicionaAvaliacao {
 
 	private Endereco criarEndereco(EmpresaRequest empresaRequest) throws ExcecaoDeCampoObrigatorio {
 		Municipio municipio = new Municipio(empresaRequest.getMunicipio().getNome());
-		municipioServicoAdapter.salvar(municipio);
+		this.municipioServicoAdapter.salvar(municipio);
 		return new Endereco(empresaRequest.getEnderecoCompleto(), empresaRequest.getCep(), municipio);
 	}
 }

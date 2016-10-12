@@ -18,11 +18,13 @@ public class AvaliacaoRequest {
 	}
 
 	public AvaliacaoRequest(UsuarioRequest usuarioRequest, EmpresaRequest empresaRequest, String descricao,
-			TipoDeAvaliacao elogio) {
+			TipoDeAvaliacao elogio, String idApiGoogle, String urlIconeApiGoogle) {
 				this.usuarioRequest = usuarioRequest;
 				this.empresaRequest = empresaRequest;
 				this.descricao = descricao;
 				this.avaliacao = elogio;
+				this.idApiGoogle = idApiGoogle;
+				this.urlIconeApiGoogle = urlIconeApiGoogle;
 	}
 
 	public UsuarioRequest getUsuarioRequest() {
