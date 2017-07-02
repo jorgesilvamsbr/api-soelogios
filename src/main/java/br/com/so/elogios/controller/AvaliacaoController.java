@@ -78,7 +78,7 @@ public class AvaliacaoController {
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/curtir")
 	public ResponseEntity<AvaliacaoResponse> curtir(@RequestBody AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio{
-		this.alteraAvaliacao.curtir(avaliacaoRequest); 
+		this.alteraAvaliacao.curtir(avaliacaoRequest);
 		return criarRespostaComAEmpresaAdicionada(avaliacaoRequest);
 	}
 	
