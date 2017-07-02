@@ -46,7 +46,6 @@ public class AvaliacaoController {
 	 
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody List<AvaliacaoResponse> listar(){
-		
 		return consultaAvaliacao.buscarTodas();
 	}
 	
