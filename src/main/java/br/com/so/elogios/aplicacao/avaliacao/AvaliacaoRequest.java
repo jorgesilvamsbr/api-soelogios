@@ -13,6 +13,7 @@ public class AvaliacaoRequest {
 	private Long id;
 	private String idApiGoogle;
 	private String urlIconeApiGoogle;
+	private String imagem;
 	
 	public AvaliacaoRequest() {
 	}
@@ -81,5 +82,13 @@ public class AvaliacaoRequest {
 	
 	public void setUrlIconeApiGoogle(String urlIconeApiGoogle) {
 		this.urlIconeApiGoogle = urlIconeApiGoogle;
+	}
+
+	public String getImagem() {
+		return this.imagem;
+	}
+	
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 }

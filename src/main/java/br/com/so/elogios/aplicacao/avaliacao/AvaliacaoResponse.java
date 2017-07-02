@@ -14,6 +14,7 @@ public class AvaliacaoResponse {
 	private String emailDoUsuario;
 	private String nomeDaEmpresa;
 	private String enderecoCompletoDaEmpresa;
+	private String imagem;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -94,5 +95,13 @@ public class AvaliacaoResponse {
 	
 	public String getEnderecoCompletoDaEmpresa() {
 		return enderecoCompletoDaEmpresa;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+	
+	public String getImagem() {
+		return imagem;
 	}
 }

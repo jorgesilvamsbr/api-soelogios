@@ -2,6 +2,7 @@ package br.com.so.elogios.dominio.avaliacao;
 
 import static org.junit.Assert.*;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Test;
 
 import br.com.so.elogios.dominio.empresa.Empresa;
@@ -89,4 +90,15 @@ public class AvaliacaoTest {
 		
 		assertEquals(descricaoEsperada, avaliacao.getDescricao());
 	}
+
+	@Test
+	public void deve_poder_conter_uma_imagem_base64() throws Exception {
+		String imagemBase64Esperada = "Minha Imagem";
+
+		Avaliacao avaliacao = AvaliacaoBuilder.novo().comImagem(imagemBase64Esperada).criar();
+
+		
+		assertEquals(imagemBase64Esperada, avaliacao.getImagem());
+	}
+
 }

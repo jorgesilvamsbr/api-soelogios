@@ -1,8 +1,6 @@
 package br.com.so.elogios.dominio.avaliacao;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import br.com.so.elogios.dominio.Entidade.EntidadeBase;
 import br.com.so.elogios.dominio.empresa.Empresa;
@@ -20,8 +18,14 @@ public class Avaliacao extends EntidadeBase {
 	
 	@Column(length=500)
 	private String descricao;
+
+	@Enumerated(EnumType.STRING)
 	private TipoDeAvaliacao tipo;
+
 	private int curtida;
+
+	@Column(length=500)
+	private String imagem;
 
 	public Avaliacao() {
 	}
@@ -75,5 +79,13 @@ public class Avaliacao extends EntidadeBase {
 		new ExcecaoDeCampoObrigatorio()
 		.quandoVazio(campo, mensagem)
 		.entaoDispara();
+	}
+
+	public void setImagem(String imagem) throws ExcecaoDeCampoObrigatorio {
+		this.imagem = imagem;
+	}
+
+	public String getImagem() {
+		return this.imagem;
 	}
 }

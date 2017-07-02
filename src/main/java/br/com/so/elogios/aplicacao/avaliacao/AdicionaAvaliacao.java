@@ -38,6 +38,7 @@ public class AdicionaAvaliacao {
 	@Transactional
 	public void adicionar(AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio, EmailInvalido {
 		Avaliacao avaliacao = new Avaliacao(avaliacaoRequest.getDescricao(), avaliacaoRequest.getTipoDeAvaliacao(), criarEmpresa(avaliacaoRequest), criarUsuario(avaliacaoRequest));
+		avaliacao.setImagem(avaliacaoRequest.getImagem());
 		
 		this.avaliacaoServicoAdapter.salvar(avaliacao);
 		

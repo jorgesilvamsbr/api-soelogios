@@ -12,12 +12,14 @@ public class AvaliacaoBuilder {
 	private String descricao;
 	private Empresa empresa;
 	private Usuario usuario;
+	private String imagem;
 
 	public AvaliacaoBuilder() throws ExcecaoDeCampoObrigatorio, EmailInvalido {
 		this.tipo = TipoDeAvaliacao.ELOGIO;
 		this.descricao = "descricao";
 		this.empresa = EmpresaBuilder.novo().criar();
 		this.usuario = UsuarioBuilder.novo().criar();
+		this.imagem = "lkjLKAShdLKSAJdlKASJdlkAJSdlHAKFJGHAKJSDJlkASLKAAAAdskdjasldjALsdjks";
 	}
 	
 	public static AvaliacaoBuilder novo() throws ExcecaoDeCampoObrigatorio, EmailInvalido {
@@ -44,7 +46,14 @@ public class AvaliacaoBuilder {
 		return this;
 	}
 	
+	public AvaliacaoBuilder comImagem(String imagem) {
+		this.imagem = imagem;
+		return this;
+	}
+	
 	public Avaliacao criar() throws ExcecaoDeCampoObrigatorio {
-		return new Avaliacao(descricao, tipo, empresa, usuario);
+		Avaliacao avaliacao = new Avaliacao(descricao, tipo, empresa, usuario);
+		avaliacao.setImagem(this.imagem);
+		return avaliacao;
 	}
 }
