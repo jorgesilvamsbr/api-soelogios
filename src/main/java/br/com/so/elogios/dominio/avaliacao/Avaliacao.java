@@ -24,7 +24,7 @@ public class Avaliacao extends EntidadeBase {
 
 	private int curtida;
 
-	@Column(length=500)
+	@Column(length=999999)
 	private String imagem;
 
 	public Avaliacao() {
