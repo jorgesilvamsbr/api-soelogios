@@ -53,7 +53,7 @@ public class AvaliacaoBuilder {
 	
 	public Avaliacao criar() throws ExcecaoDeCampoObrigatorio {
 		Avaliacao avaliacao = new Avaliacao(descricao, tipo, empresa, usuario);
-		avaliacao.setImagem(this.imagem);
+		avaliacao.setImagem(this.imagem.getBytes());
 		return avaliacao;
 	}
 }

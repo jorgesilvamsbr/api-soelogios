@@ -28,6 +28,8 @@ public class Avaliacao extends EntidadeBase {
 
 	private int curtida;
 
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
 	private byte[] imagem;
 
 	public Avaliacao() {
@@ -94,7 +96,7 @@ public class Avaliacao extends EntidadeBase {
 	
 	public String obterImagemDecodificada() {
 		try{
-		return new String(Base64.getDecoder().decode(new String(this.imagem).getBytes("UTF-8")));
+			return new String(Base64.getDecoder().decode(new String(this.imagem).getBytes("UTF-8")));
 		}catch(UnsupportedEncodingException e){
 			System.out.println(e);
 			return VAZIO;
