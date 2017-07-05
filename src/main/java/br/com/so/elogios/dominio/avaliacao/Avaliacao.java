@@ -1,5 +1,8 @@
 package br.com.so.elogios.dominio.avaliacao;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
+
 import javax.persistence.*;
 
 import br.com.so.elogios.dominio.Entidade.EntidadeBase;
@@ -9,6 +12,7 @@ import br.com.so.elogios.dominio.usuario.Usuario;
 
 @Entity
 public class Avaliacao extends EntidadeBase {
+	private static final String VAZIO = "";
 
 	@OneToOne
 	private Usuario usuario;
@@ -24,8 +28,7 @@ public class Avaliacao extends EntidadeBase {
 
 	private int curtida;
 
-	@Column(length=999999)
-	private String imagem;
+	private byte[] imagem;
 
 	public Avaliacao() {
 	}
@@ -81,11 +84,20 @@ public class Avaliacao extends EntidadeBase {
 		.entaoDispara();
 	}
 
-	public void setImagem(String imagem) throws ExcecaoDeCampoObrigatorio {
+	public void setImagem(byte[] imagem) throws ExcecaoDeCampoObrigatorio {
 		this.imagem = imagem;
 	}
 
-	public String getImagem() {
+	public byte[] getImagem() {
 		return this.imagem;
+	}
+	
+	public String obterImagemDecodificada() {
+		try{
+		return new String(Base64.getDecoder().decode(new String(this.imagem).getBytes("UTF-8")));
+		}catch(UnsupportedEncodingException e){
+			System.out.println(e);
+			return VAZIO;
+		}
 	}
 }

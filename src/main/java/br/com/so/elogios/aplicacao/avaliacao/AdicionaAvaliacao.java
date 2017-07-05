@@ -1,5 +1,7 @@
 package br.com.so.elogios.aplicacao.avaliacao;
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +40,8 @@ public class AdicionaAvaliacao {
 	@Transactional
 	public void adicionar(AvaliacaoRequest avaliacaoRequest) throws ExcecaoDeCampoObrigatorio, EmailInvalido {
 		Avaliacao avaliacao = new Avaliacao(avaliacaoRequest.getDescricao(), avaliacaoRequest.getTipoDeAvaliacao(), criarEmpresa(avaliacaoRequest), criarUsuario(avaliacaoRequest));
-		avaliacao.setImagem(avaliacaoRequest.getImagem());
+		byte[] imagemCodificada = Base64.getEncoder().encode(avaliacaoRequest.getImagem().getBytes());
+		avaliacao.setImagem(imagemCodificada);
 		
 		this.avaliacaoServicoAdapter.salvar(avaliacao);
 		
