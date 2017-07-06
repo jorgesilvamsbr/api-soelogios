@@ -57,7 +57,7 @@ public class ConsultaAvaliacao {
 		avaliacaoResponse.setCurtidas(avaliacao.obterCurtidas());
 		avaliacaoResponse.setDescricao(avaliacao.getDescricao());
 		avaliacaoResponse.setTipo(avaliacao.getTipo());
-		avaliacaoResponse.setImagem(avaliacao.obterImagemDecodificada());
+		avaliacaoResponse.setImagem("");
 		return avaliacaoResponse;
 	}
 }
